@@ -1,0 +1,119 @@
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background-color: #818181;
+    align-items: center;
+    display: flex;
+}
+
+#container{
+    position: absolute;
+    top: 2%;
+    left: 25%;
+    width: 65%;
+    margin: 0 auto;
+}
+
+.command_container {
+    width: 100%;
+    margin: 0 auto;
+    background-color: orange;
+    padding: 10px;
+}
+
+.header, .cont {
+    text-align: center;
+    padding: 5px;
+}
+
+.header label{
+    font-size: 5vh;
+}
+
+.spaceholder {
+    padding: 5vh;
+    background-color: white;
+}
+
+.buttonholder{
+    align-items: center;
+    display: flex;
+}
+
+.buttonholder button{
+    width: 100%;
+    font-size: 3vh;
+    background-color: orange;
+}
+
+#header label{
+    font-size: 5vh;
+}
+
+.nested {
+    padding: 4px 0;
+    border: 1px dotted #bbb;
+    background-color: orange;
+}
+
+.for, .while{
+    background-color: blueviolet;
+}
+
+.if{
+    background-color: coral;
+}
+
+.for input {
+    font-size: 3vh;
+    margin-bottom: 2vh;
+    margin-left: 2vh;
+    background-color: darkred;
+    width: 30%;
+}
+
+.p {
+    background-color: green;
+}
+
+.red{
+    background-color: crimson;
+}
+
+.t {
+    background-color: dodgerblue;
+}
+
+.s {
+    background-color: dimgray;
+}
+
+.sel{
+    background-color: darkred;
+    font-size: 3vh;
+    margin-bottom: 2vh;
+    margin-left: 2vh;
+}
+
+.cont div{
+    border: 2px solid;
+    padding: 3vh;
+    font-size: 3vh;
+}
+
+selectn, input {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+div{
+    text-align: center;
+}
+
+label{
+    margin:0 auto;
+    font-size: 5vh;
+}

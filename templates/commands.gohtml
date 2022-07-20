@@ -1,0 +1,54 @@
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="/static/css/commands.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/sidenav.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <title>Příkazy</title>
+</head>
+<body>
+<div id="mySidenav" class="sidenav">
+    <ul id="commands">
+        {{range .Commands}}
+            <li><a href="#{{.Comm}}" id="{{.Comm}}li" class="{{.Comm}}"> {{.NameOfCommand}} </a></li>
+        {{end}}
+    </ul>
+</div>
+
+<div id="container">
+{{range $index, $element := .Commands}}
+    <div id="{{.Comm}}" class="command_container">
+        <div class="header"><label>{{.NameOfCommand}}</label></div>
+        <div id="{{$index}}" class="cont nested"></div>
+        <div class="buttonholder"><label><button onclick="javascript:deleteCommand({{.Comm}},{{.NameOfCommand}})">Vymazat příkaz</button></label></div>
+    </div>
+    <div class="spaceholder"></div>
+{{end}}
+</div>
+
+<div id="footer">
+    <label>{{.Name}}</label>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
+<script>
+    {{range $index, $element := .Commands}}
+    document.getElementById("{{$index}}").innerHTML = {{.Html}};
+    {{end}}
+
+    function deleteCommand(command, commandName){
+        Swal.fire({
+            title: 'Opravdu chcete smazat příkaz ' + commandName + '?',
+            showCancelButton: true,
+            confirmButtonText: 'Smazat',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(command).remove();
+                document.getElementById(command+'li').innerHTML = "";
+                fetch("/removeCommand/" + commandName, {method: 'POST',});
+            }
+        })
+    }
+</script>
+</body>
+</html>

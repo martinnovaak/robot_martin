@@ -1,0 +1,98 @@
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/sidenav.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-dragula/1.2.8/dragula.min.css">
+    <script src="https://unpkg.com/konva@8/konva.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.js'></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <title>Robot</title>
+</head>
+<body>
+<div id="mySidenav" class="sidenav">
+    <ul id="commands">
+        <li><a href="javascript:add(1)">KROK</a></li>
+        <li><a href="javascript:add(2)">VPRAVO-VBOK</a></li>
+        <li><a href="javascript:addNested(3)">KDYŽ</a></li>
+        <li><a href="javascript:addNested(1)">OPAKUJ</a></li>
+        <li><a href="javascript:addNested(2)">DOKUD</a></li>
+        {{range .Commands}}
+            <li><a onclick="javascript:addCustomCommand(this)" class="{{.Comm}}"> {{.NameOfCommand}} </a></li>
+        {{end}}
+    </ul>
+</div>
+
+<div  id="container">
+    <p id="bar"></p>
+    <div id="header"><label>PŘÍKAZY</label></div>
+    <div id="cont" class="nested"> </div>
+    <div id="spaceholder"></div>
+</div>
+
+<div id="konva-holder"></div>
+
+<div id="send">
+    <label>Odešli</label>
+</div>
+<div id="delete">
+    <label>Vyčisti</label>
+</div>
+<div id="save">
+    <label>Ulož příkaz</label>
+</div>
+<div id="savedcommands">
+    {{if .Name}} <label><a href="/commands">Uložené příkazy</a></label>{{end}}
+</div>
+
+<div id="footer">
+    <div id="sel">
+        <p>Level:</p>
+        <select name="level" id="level" onchange="changeLevel()">
+            {{range .Levels}} <option value="{{.ID}}">{{.ID}}</option>{{end}}
+        </select>
+    </div>
+    <div id="reset"><a onclick="javascript:restart()" href="#">Restart</a></div>
+    <div id="name"><label>{{if .Name}} {{.Name}} {{else}} Nejste přihlášen {{end}}</label></div>
+    <div id="lorelo">{{if .Name}}<a href="/logout">Odhlásit se</a>{{else}}    <a href="/login">Přihlásit se</a>{{end}}  </div>
+</div>
+    <script src="/static/js/drag.js"></script>
+    <script src="/static/js/kanvas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
+    <script>
+        let rows = [], cols = [], px = [], py = [], z = 0;
+        {{range .Levels}}
+            rows.push({{.Rows}})
+            cols.push({{.Cols}})
+        {{end}}
+        {{range .Obstacles}}
+            px[z] = [];
+            py[z] = [];
+            {{range .X}}
+                px[z].push({{.}})
+            {{end}}
+            {{range .Y}}
+                py[z].push({{.}})
+            {{end}}
+            z++;
+        {{end}}
+        z=document.getElementById("level").value - 1;
+        let obsts = px[z].length;
+        r = rows[z];
+        c = cols[z];
+
+        createCanvas();
+        window.onresize = () => {createCanvas();};
+
+        function changeLevel(){
+            var sel = document.getElementById("level");
+            z = sel.value - 1;
+            r = rows[z];
+            c = cols[z];
+            obsts = px[z].length;
+            restart();
+        }
+    </script>
+</body>
+</html>

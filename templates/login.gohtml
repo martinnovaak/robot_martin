@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration Form</title>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        .cont{
+            background-color: grey;
+        }
+
+        .error {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div  class="container justify-content-center py-5">
+        <div class="row justify-content-center ">
+            <div class=" col-xl-6 col-lg-8 col-md-10 col-sm-11 w_25 justify-content-center text-center cont">
+                <div id="login-div">
+                    <form class="p-5 text-start form-upload" method="POST" action="/login">
+                        <h4 class="mb-4 text-center "><strong> Přihlášení</strong></h4>
+
+                        <div class="form-outline mb-4 ">
+                            <label class="form-label" for="username">Uživatelské jméno</label> {{if eq .Login true}}{{if eq .LoginError true}}<label class="error">{{.UsernameError}}</label>{{end}}{{end}}
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Uživatelské jméno" />
+                        </div>
+            
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password">Heslo</label> {{if eq .Login true}}{{if eq .LoginError true}}<label class="error">{{.PasswordError}}</label>{{end}}{{end}}
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Heslo"/> 
+                        </div>
+            
+                        <div class="text-center pt-1 mb-3 pb-1">
+                            <input class="btn btn-success" type="submit" value="Přihlásit"> 
+                        </div>
+                    </form>
+                </div>
+
+                <div id="register-div">
+                    <form class="p-5 text-start form-upload" method="POST" action="/register">
+                        <h4 class="mb-4 text-center "><strong> Registrace</strong></h4>
+            
+                        <div class="form-outline mb-4 ">
+                            <label class="form-label" for="username">Uživatelské jméno</label> {{if eq .Login false}}{{if eq .LoginError true}}<label class="error">{{.UsernameError}}</label>{{end}}{{end}}
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Uživatelské jméno" />
+                        </div>
+            
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password">Heslo</label>{{if eq .Login false}}{{if eq .LoginError true}}<label class="error">{{.PasswordError}}</label>{{end}}{{end}}
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Uživatelské jméno"/>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Email</label> {{if eq .Login false}}{{if eq .LoginError true}}<label class="error">{{.EmailError}}</label>{{end}}{{end}}
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email"/>
+                        </div>
+            
+                        <div class="text-center pt-1 mb-3 pb-1">
+                            <input class="btn btn-success" type="submit" value="Registrovat"> 
+                        </div>
+                    </form>
+                </div>
+                <div><div id="paragraph">{{if eq .Login true}}Nemáte účet?{{else}}Již máte účet?{{end}}</div> <a href="javascript:changeForm()" id="ahref">Registrovat se</a></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        login = document.getElementById("login-div");
+        reg = document.getElementById("register-div");
+        ahref = document.getElementById("ahref");
+        paragraph = document.getElementById("paragraph");
+
+        {{if eq .Login true}}
+        reg.style.display = "none";
+        login.style.display = "block";
+        paragraph.innerHTML = "Nemáte účet?";
+        ahref.innerHTML = "Registrovat se";
+        {{else}}
+        reg.style.display = "block";
+        login.style.display = "none";
+        paragraph.innerHTML = "Již máte účet?";
+        ahref.innerHTML = "Přihlásit se";
+        {{end}}
+
+        function changeForm(){
+            if(login.style.display == "none"){
+                reg.style.display = "none";
+                login.style.display = "block";
+                paragraph.innerHTML = "Nemáte účet?";
+                ahref.innerHTML = "Registrovat se";
+            } else {
+                reg.style.display = "block";
+                login.style.display = "none";
+                paragraph.innerHTML = "Již máte účet?";
+                ahref.innerHTML = "Přihlásit se";
+            }
+        }
+    </script>
+</body>
+</html>

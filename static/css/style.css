@@ -1,0 +1,185 @@
+#container {
+    position: absolute;
+    top: 2%;
+    left: 17%;
+    width: 40%;
+    margin: 0 auto;
+    background-color: orange;
+}
+
+#header, #cont {
+    text-align: center;
+    padding: 5px;
+}
+
+#spaceholder {
+    padding: 5vh;
+    background-color: white;
+}
+
+#header label{
+    font-size: 5vh;
+}
+
+.nested {
+    padding: 4px 0;
+    border: 1px dotted #bbb;
+    background-color: orange;
+}
+
+.for, .while{
+    background-color: blueviolet;
+}
+
+.if{
+    background-color: coral;
+}
+
+.for input {
+    font-size: 3vh;
+    margin-bottom: 2vh;
+    margin-left: 2vh;
+    background-color: darkred;
+    width: 30%;
+}
+
+.p {
+    background-color: green;
+}
+
+.red{
+    background-color: crimson;
+}
+
+.t {
+    background-color: dodgerblue;
+}
+
+.s {
+    background-color: dimgray;
+}
+
+
+#cont div{
+    border: 2px solid;
+    padding: 3vh;
+    font-size: 3vh;
+}
+
+
+#send{
+    position: fixed;
+    bottom: 0;
+    left: 17%;
+    width: 14%;
+    height: 10%;
+    background-color: darkkhaki;
+    align-items: center;
+    display: flex;
+}
+
+#delete{
+    position: fixed;
+    bottom: 0;
+    left: 31%;
+    width: 13%;
+    height: 10%;
+    background-color: chocolate;
+    align-items: center;
+    display: flex;
+}
+
+#save{
+    position: fixed;
+    bottom: 0;
+    left: 44%;
+    width: 13%;
+    height: 10%;
+    background-color: olive;
+    align-items: center;
+    display: flex;
+}
+
+label{
+    margin:0 auto;
+    font-size: 5vh;
+}
+
+#name{
+    width: 40%;
+    padding-right: 3vh;
+    padding-right: 3vh;
+}
+
+#name label{
+    margin:0 auto;
+    font-size: 3vh;
+}
+
+.sel{
+    background-color: darkred;
+    font-size: 3vh;
+    margin-bottom: 2vh;
+    margin-left: 2vh;
+}
+
+#konva-holder {
+    position: fixed;
+    top: 2%;
+    left: 58%;
+    width: 40%;
+    height: 85%;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 58.3%;
+    width: 40.25%;
+    height: 10%;
+    background-color: #818181;
+    align-items: center;
+    display: flex;
+}
+
+#footer a{
+    font-size: 3vh;
+}
+
+#lorelo{
+    right: 0;
+    width: 20%;
+}
+
+#sel{
+    width: 25%;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    display: flex;
+    align-items: center;
+}
+
+#sel select{
+    width: 80%;
+    height: 50%;
+}
+
+#savedcommands{
+    width: 16%;
+    height: 10%;
+    top: 90%;
+    left: 0;
+    position: fixed;
+    background-color: #111;
+    align-items: center;
+    display: flex;
+}
+
+#savedcommands a{
+    font-size: 1.8vw;
+    color: #818181;
+}
+
+#reset{
+    padding-right: 6vh;
+}
